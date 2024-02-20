@@ -4,7 +4,7 @@
       <HeaderWithLink
         v-if="withHeader && title"
         :heading="title"
-        :label-desktop="$t('backToShopping')"
+        :label-desktop="$t('back')"
         :label-mobile="$t('back')"
       />
       <div v-if="products && products.length > 0" data-testid="wishlist-page-content">
@@ -16,11 +16,12 @@
             <NuxtLazyHydrate when-visible v-for="(product, index) in products" :key="productGetters.getId(product)">
               <UiProductCard
                 :product="product"
+                is-from-wishlist
                 :name="productGetters.getName(product) ?? ''"
                 :rating-count="productGetters.getTotalReviews(product)"
                 :rating="productGetters.getAverageRating(product)"
                 :price="actualPrice(product)"
-                :image-url="addWebpExtension(productGetters.getCoverImagePreview(product))"
+                :image-url="addWebpExtension(productGetters.getMiddleImage(product))"
                 :image-alt="productGetters.getName(product) ?? ''"
                 :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
                 :priority="index === 0"
@@ -37,9 +38,17 @@
           </section>
         </div>
       </div>
-      <div v-else class="flex items-center justify-center flex-col pt-24 pb-32" data-testid="cart-page-content">
-        <NuxtImg src="/images/empty-cart.svg" :alt="$t('emptyCartImgAlt')" width="192" height="192" />
-        <h2 class="mt-8">{{ $t('emptyWishlist') }}</h2>
+      <div v-else class="flex items-center justify-center flex-col pt-24 pb-32" data-testid="wishlist-page-content">
+        <NuxtImg
+          data-testid="empty-wishlist-image"
+          src="/images/empty-cart.svg"
+          :alt="$t('emptyCartImgAlt')"
+          width="192"
+          height="192"
+        />
+        <h2 data-testid="empty-wishlist-text" class="mt-8 typography-headline-3 font-bold">
+          {{ $t('emptyWishlist') }}
+        </h2>
       </div>
     </div>
   </NarrowContainer>

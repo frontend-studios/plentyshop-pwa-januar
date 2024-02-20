@@ -353,6 +353,10 @@
     "next": "Next",
     "image": "Slide {index}"
   },
+  "customHomepage": {
+    "headline": "EN trifft Mehrsprachigkeit",
+    "heroImage": "https://cdn10.plentymarkets.com/mrt54q44tptl/frontend/startseite/2024/Startseite_1_Wohnzimmer_01-24_Mobile.webp"
+  },
   "review": {
     "verifiedPurchase": "Verified purchase"
   },

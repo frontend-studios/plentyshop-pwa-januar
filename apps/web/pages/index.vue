@@ -1,120 +1,75 @@
 <template>
-  <div class="relative min-h-[600px]">
-    <picture>
-      <source srcset="/images/homepage-hero-bg.webp" media="(min-width: 768px)" />
-      <img
-        src="/images/homepage-hero-bg-mobile.webp"
-        alt="Hero mobile background"
-        class="absolute w-full h-full z-[-1] md:object-cover"
-      />
-    </picture>
-    <div class="md:flex md:flex-row-reverse md:justify-center max-w[1536px] mx-auto md:min-h-[600px]">
-      <div class="flex flex-col md:basis-2/4 md:items-stretch md:overflow-hidden">
-        <img src="/images/homepage-hero-headphones.webp" alt="Headphones" class="h-full object-cover object-left" />
-      </div>
-      <div class="p-4 md:p-10 md:max-w-[768px] md:flex md:flex-col md:justify-center md:items-start md:basis-2/4">
-        <p class="typography-text-xs md:typography-text-sm font-bold tracking-widest text-neutral-500 uppercase">
-          Feel the music
-        </p>
-        <h1 class="typography-display-2 md:typography-display-1 md:leading-[67.5px] font-bold mt-2 mb-4">
-          New Wireless Pro
-        </h1>
-        <p class="typography-text-base md:typography-text-lg">
-          Spatial audio. Adjustable ear cups. On-device controls. All-day battery.
-        </p>
-        <div class="flex flex-col md:flex-row gap-4 mt-6">
-          <SfButton size="lg"> Order now </SfButton>
-          <SfButton size="lg" variant="secondary" class="bg-white"> Show more </SfButton>
-        </div>
+
+  <div class="w-full mx-auto fs-homepage mt-4">
+    <div class="flex max-w-screen-2xl mx-auto hero relative justify-center mt-4">
+      <div class="flex relative">
+        <a :href="$t('customHomepage.heroCTALinkTo')">
+          <img :src="$t('customHomepage.heroImage')" alt="HeroImage" class="h-full object-cover object-left"/>
+          <div class="heroline-wrapper absolute">
+            <span class="text-sm font-bold block bg-primary-700 p-3 pb-0 text-white" v-if="$t('customHomepage.heroSubHeadline') != ''">{{ $t('customHomepage.heroSubHeadline') }}</span>
+            <span class="text-xl block bg-primary-700 px-3 pb-3 mb-3 text-white" v-if="$t('customHomepage.heroSubHeadline') != ''">{{ $t('customHomepage.heroHeadline') }}</span>
+            <span class="btn btn-primary inline-block font-medium text-base py-2 px-4 text-black shadow bg-secondary-700 hover:bg-primary-700 hover:text-white" v-if="$t('customHomepage.heroCTABtnText') != ''">
+              {{ $t('customHomepage.heroCTABtnText') }}
+            </span>
+          </div>
+        </a>
       </div>
     </div>
-  </div>
-  <div class="max-w-screen-3xl mx-auto md:px-6 lg:px-10">
-    <div class="flex flex-wrap gap-4 lg:gap-6 lg:flex-no-wrap justify-center my-10">
-      <div
-        v-for="{ title, image } in categories"
-        :key="title"
-        role="img"
-        :aria-label="title"
-        :aria-labelledby="`image-${title}`"
-        class="relative flex-col min-w-[140px] max-w-[360px] justify-center group"
-      >
-        <img
-          class="rounded-full bg-neutral-100 group-hover:shadow-xl group-active:shadow-none"
-          :src="image"
-          :alt="title"
-          width="360"
-          height="360"
-        />
-        <div :id="`image-${title}`" class="flex justify-center">
-          <div
-            class="mt-4 font-semibold no-underline text-normal-900 typography-text-base group-hover:text-primary-800 group-hover:font-normal group-active:text-primary-800 group-active:font-normal"
-          >
-            {{ title }}
+
+
+    <div class="w-full mx-auto cats mt-4 bg-primary-700">
+      <div class="max-w-screen-2xl mx-auto relative w-full mb-3 py-12">
+        <div class="flex flex-wrap justify-between w-full items-end">
+          <div>
+            <span class="text-sm block text-white">{{ $t('customHomepage.catSubHeadline') }}</span>
+            <span class="text-2xl font-bold block text-white">{{ $t('customHomepage.catHeadline') }}</span>
+          </div>
+          <div>
+            <a href="" class="text-xs text-white hover:underline">
+                 {{ $t('customHomepage.catShowAll') }}
+            </a>
           </div>
         </div>
       </div>
     </div>
-    <div class="flex flex-col md:flex-row flex-wrap gap-6 mt-max-w-[1540px]">
-      <div
-        v-for="{
-          image,
-          title,
-          subtitle,
-          description,
-          buttonText,
-          backgroundColor,
-          reverse,
-          titleClass,
-          subtitleClass,
-        } in displayDetails"
-        :key="title"
-        :class="[
-          'relative flex md:max-w-[1536px] md:[&:not(:first-of-type)]:flex-1 md:first-of-type:w-full',
-          backgroundColor,
-        ]"
-      >
-        <a
-          class="absolute w-full h-full z-1 focus-visible:outline focus-visible:rounded-lg"
+
+    <div class="max-w-screen-2xl mx-auto relative w-full mb-3 py-5 catcontent">
+      <div class="flex flex-wrap flex-col md:flex-row gap-4 justify-center">
+        <div
+          v-for="{ title, image, link } in categories"
+          :key="title"
+          role="img"
           :aria-label="title"
-          href="#"
-        />
-        <div :class="['flex justify-between overflow-hidden grow', { 'flex-row-reverse': reverse }]">
-          <div class="flex flex-col justify-center items-start p-6 lg:p-10 max-w-1/2">
-            <p :class="['uppercase typography-text-xs block font-bold tracking-widest', subtitleClass]">
-              {{ subtitle }}
-            </p>
-            <h2 :class="['mb-4 mt-2 font-bold typography-display-3', titleClass]">
-              {{ title }}
-            </h2>
-            <p class="typography-text-base block mb-4">
-              {{ description }}
-            </p>
-            <SfButton class="!bg-black">{{ buttonText }}</SfButton>
-          </div>
-          <img :src="image" :alt="title" class="w-1/2 self-end object-contain" />
+          :aria-labelledby="'image-' + title"
+          class="relative flex-1 justify-center"
+        >
+          <a :href="link">
+            <img class="border-4 border-primary-700 rounded" :src="image" :alt="title" />
+            <div class="cat-wrapper absolute">
+              <span class="btn btn-primary inline-block font-medium text-base py-2 px-4 text-black shadow bg-secondary-700 hover:bg-primary-700 hover:text-white">{{ title }}</span>
+            </div>
+          </a>
+
+
         </div>
       </div>
     </div>
-    <NuxtLazyHydrate when-visible>
-      <NewsletterSubscribe class="mt-5" />
-    </NuxtLazyHydrate>
-    <section class="mx-4 mt-28 mb-20 overflow-hidden">
-      <NuxtLazyHydrate when-visible>
-        <p data-testid="recommended-products" v-if="recommendedProducts" class="my-4 typography-text-lg">
-          {{ $t('moreItemsOfThisCategory') }}
-        </p>
-        <RecommendedProducts v-if="recommendedProducts" :products="recommendedProducts" />
-      </NuxtLazyHydrate>
-    </section>
-  </div>
+
+
+  </div><!--  ENDE fs-Homepage -->
+
+
+
+
+
 </template>
 
 <script lang="ts" setup>
-import { SfButton } from '@storefront-ui/vue';
+import {SfButton} from '@storefront-ui/vue';
 
-const { data: categoryTree } = useCategoryTree();
-const { data: recommendedProducts, fetchProductRecommended } = useProductRecommended('homepage');
+const {data: categoryTree} = useCategoryTree();
+const {data: recommendedProducts, fetchProductRecommended} = useProductRecommended('homepage');
+
 
 definePageMeta({
   pageType: 'static',
@@ -128,51 +83,21 @@ onMounted(async () => {
   }
 });
 
-const displayDetails = [
-  {
-    image: '/images/homepage-display-1.webp',
-    title: 'Sunny Days Ahead',
-    subtitle: 'Be inspired',
-    description: 'Step out in style with our sunglasses collection',
-    buttonText: 'Discover now',
-    reverse: false,
-    backgroundColor: 'bg-negative-200',
-    titleClass: 'md:typography-display-2',
-    subtitleClass: 'md:typography-headline-6',
-    descriptionClass: 'md:typography-text-lg',
-  },
-  {
-    image: '/images/homepage-display-2.webp',
-    title: 'Pack it Up',
-    subtitle: 'Be active',
-    description: 'Explore the great outdoors with our backpacks',
-    buttonText: 'Discover now',
-    reverse: true,
-    backgroundColor: 'bg-warning-200',
-  },
-  {
-    image: '/images/homepage-display-3.webp',
-    title: 'Fresh and Bold',
-    subtitle: 'New collection',
-    description: 'Add a pop up color to your outfit',
-    buttonText: 'Discover now',
-    reverse: false,
-    backgroundColor: 'bg-secondary-200',
-  },
-];
-
 const categories = [
   {
-    title: `Women`,
-    image: '/images/homepage-women-category.webp',
+    title: 'Neuheiten',
+    link: '#Neuheiten',
+    image: 'https://picsum.photos/seed/picsum/500/360\n',
   },
   {
-    title: `Men`,
-    image: '/images/homepage-men-category.webp',
+    title: 'Top-Seller',
+    link: '#Topseller',
+    image: 'https://picsum.photos/seed/picsum/500/360\n',
   },
   {
-    title: `Kid`,
-    image: '/images/homepage-kid-category.webp',
-  },
+    title: 'Kategorie',
+    link: '#Kategorie3',
+    image: 'https://picsum.photos/seed/picsum/500/360\n',
+  }
 ];
 </script>

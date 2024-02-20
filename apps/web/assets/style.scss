@@ -10,3 +10,26 @@
     @apply hidden /* for Chrome, Safari, and Opera */;
   }
 }
+
+.fs-homepage {
+  .hero {
+    .heroline-wrapper {
+      bottom: 5%;
+      right: auto;
+      left: 50%;
+      transform: translate(-50%,-10%);
+    }
+  }
+  &.cats {
+
+  }
+  .catcontent {
+    transform: translateY(-15%);
+    .cat-wrapper {
+      bottom: 5%;
+      right: auto;
+      left: 50%;
+      transform: translate(-50%,-10%);
+    }
+  }
+}

@@ -353,6 +353,29 @@
     "next": "Nächste",
     "image": "Bild {index}"
   },
+  "HeaderUSPs": {
+    "DeactivateUSP": "Text löschen um USPS auszublenden",
+    "USP1Text": "USP1Text",
+    "USP1Link": "#USP1Link",
+    "USP2Text": "USP2Text",
+    "USP2Link": "",
+    "USP3Text": "USP3Text",
+    "USP3Link": "",
+    "USP4Text": "USP4Text",
+    "USP4Link": "",
+    "USP5Text": "USP5Text",
+    "USP5Link": ""
+  },
+  "customHomepage": {
+    "heroSubHeadline": "Subheadline",
+    "heroHeadline": "Design trifft Mehrsprachigkeit",
+    "heroCTABtnText": "Call-To-Action Text",
+    "heroCTALinkTo": "#Call-To-Action Link",
+    "heroImage": "https://picsum.photos/seed/picsum/1366/500",
+    "catSubHeadline": "wird als zweites gelesen",
+    "catHeadline": "Beste Kategorie die wo gibt",
+    "catShowAll": "Alle Artikel anzeigen"
+  },
   "review": {
     "verifiedPurchase": "Verifizierter Kauf"
   },

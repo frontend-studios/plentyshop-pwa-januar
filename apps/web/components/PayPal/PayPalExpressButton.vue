@@ -26,7 +26,8 @@ const TypeCartPreview = 'CartPreview';
 const TypeSingleItem = 'SingleItem';
 const TypeCheckout = 'Checkout';
 
-const paypal = await loadScript(currency.value);
+const isCommit = props.type === TypeCheckout;
+const paypal = await loadScript(currency.value, isCommit);
 
 const onInit = (actions: OnInitActions) => {
   if (props.type === TypeCheckout) {
@@ -86,7 +87,7 @@ const onApprove = async (data: OnApproveData) => {
 // eslint-disable-next-line sonarjs/cognitive-complexity
 const renderButton = () => {
   if (paypal) {
-    const FUNDING_SOURCES = [paypal.FUNDING?.PAYPAL];
+    const FUNDING_SOURCES = [paypal.FUNDING?.PAYPAL, paypal.FUNDING?.PAYLATER];
 
     FUNDING_SOURCES.forEach((fundingSource) => {
       if (paypal?.Buttons && fundingSource) {
